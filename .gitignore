@@ -1,0 +1,12 @@
+# ILY vscode
+.vscode/
+*.code-workspace
+
+# Builds and binaries
+build/
+obj/
+bin/
+.cache/
+
+# Local files
+src/secrets.hpp
