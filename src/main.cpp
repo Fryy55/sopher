@@ -1,6 +1,7 @@
 #include <dpp/dpp.h>
 
 #include <bismuth/classes/logger.hpp>
+#include <bismuth/utils/random.hpp>
 #include <aurora/aurora.hpp>
 
 #include "secrets.hpp"
@@ -45,6 +46,12 @@ int main() {
 			return;
 
 		auto const& msg = event.msg.content;
+
+		if (event.msg.author.username == "bluestone413" && bismuth::utils::random<std::uint8_t>(1u, 100u) == 55u) {
+			event.reply(msg);
+
+			return;
+		}
 
 		if (msg.contains("meow"))
 			event.reply("meow");
