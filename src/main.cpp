@@ -45,13 +45,13 @@ int main() {
 		if (event.msg.author.format_username() == "sopher#7829")
 			return;
 
-		auto const& msg = event.msg.content;
-
 		if (event.msg.author.username == "bluestone413" && bismuth::utils::random<std::uint8_t>(1u, 100u) == 55u) {
-			event.reply(msg);
+			event.reply(event.msg);
 
 			return;
 		}
+
+		auto const& msg = event.msg.content;
 
 		if (msg.contains("meow"))
 			event.reply("meow");
