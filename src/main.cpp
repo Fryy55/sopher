@@ -42,10 +42,24 @@ int main() {
 	});
 
 	bot.on_message_create([](message_create_t const& event) {
-		if (event.msg.author.format_username() == "sopher#7829")
+		std::string_view const botUsername = "sopher#7829";
+		if (event.msg.author.format_username() == botUsername)
 			return;
 
-		if (event.msg.author.username == "bluestone413" && bismuth::utils::random<std::uint8_t>(1u, 100u) == 55u) {
+		if (
+			std::ranges::find_if(event.msg.mentions, [&botUsername](auto&& x) {
+				return x.first.format_username() == botUsername;
+			}) != event.msg.mentions.end()
+		) {
+			event.reply("haii");
+
+			return;
+		}
+
+		if (
+			auto fairRoll = bismuth::utils::random<std::uint8_t>(1u, 100u);
+			event.msg.author.username == "bluestone413" && (fairRoll == 55u || fairRoll == 43u)
+		) {
 			event.reply(event.msg);
 
 			return;
